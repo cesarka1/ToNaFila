@@ -69,6 +69,7 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen bg-[#E1DADA] p-4">
+    <h1 class="text-[#7297E0] font-black text-3xl pt-13">TO NA FILA</h1>
 
     <h1 class="text-[#7297E0] font-black text-3xl pt-10">Encontre sua fila</h1>
 
