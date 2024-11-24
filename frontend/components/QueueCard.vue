@@ -21,9 +21,9 @@ const getTypeColor = (type) => {
 
 const getTypeImage = (type) => {
   const images = {
-    'medical': '/medical-bg.jpg',
+    'medical': '/medical-bg.png',
     'bank': '/bank-bg.jpg',
-    'legal': '/legal-bg.jpg'
+    'legal': '/legal-bg.png'
   };
   return images[type] || '/default-bg.jpg';
 };
