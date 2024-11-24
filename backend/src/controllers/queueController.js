@@ -106,4 +106,49 @@ const getQueueDetails = async (req, res) => {
   }
 };
 
-module.exports = { createQueue, listQueues, deleteQueue, getQueueDetails };
+const advanceQueue = async (req, res) => {
+  try {
+    const { queueId } = req.params;
+
+    if (!queueId) {
+      return res.status(400).send({ error: "O ID da fila é obrigatório." });
+    }
+
+    const queueRef = db.ref(`queues/${queueId}/users`);
+
+    const snapshot = await queueRef.once("value");
+    const users = snapshot.val();
+
+    if (!users || Object.keys(users).length === 0) {
+      return res.status(404).send({ error: "A fila está vazia." });
+    }
+
+    const usersArray = Object.entries(users)
+      .map(([key, user]) => ({ key, ...user }))
+      .sort((a, b) => a.joinedAt - b.joinedAt);
+
+    const firstUser = usersArray.shift();
+
+    await queueRef.set(
+      usersArray.reduce((acc, user) => {
+        acc[user.key] = {
+          uid: user.uid,
+          name: user.name,
+          joinedAt: user.joinedAt,
+        };
+        return acc;
+      }, {})
+    );
+
+    res.status(200).send({
+      message: "Usuário removido da fila.",
+      removedUser: { uid: firstUser.uid, name: firstUser.name },
+      remainingUsers: usersArray.length,
+    });
+  } catch (error) {
+    console.error("Erro ao avançar na fila:", error);
+    res.status(500).send({ error: "Erro ao avançar na fila." });
+  }
+};
+
+module.exports = { createQueue, listQueues, deleteQueue, getQueueDetails, advanceQueue };
