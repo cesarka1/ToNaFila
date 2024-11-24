@@ -1,6 +1,13 @@
 <template>
   <div class="min-h-screen bg-[#E1DADA] p-4">
-    <!-- Header com botão de voltar -->
+    <Title 
+    :titles="[
+      'Agora é só esperar a sua vez, mas do lugar que você quiser!', 
+      'Aproveite melhor o tempo de espera, a gente cuida do resto!',
+      'Você está na fila, agora é com a gente!'
+    ]" 
+    ::interval="3000" 
+    />
     <div class="max-w-2xl mx-auto mb-6">
       <button
         @click="$router.push('/')"
@@ -26,7 +33,6 @@
 
     <div class="max-w-2xl mx-auto">
       <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-        <!-- Header do card -->
         <div class="bg-[#98ACD5] p-6">
           <h1 class="text-2xl font-bold text-white mb-2">
             {{ queueDetails.name || "Fila de Atendimento" }}
