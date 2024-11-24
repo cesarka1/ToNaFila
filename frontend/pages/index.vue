@@ -85,9 +85,8 @@ onMounted(() => {
       </div>
     </div>
     
-    <!-- Título e botão "Ver todas" -->
     <div class="pt-6 mb-4 flex justify-between items-center">
-      <h2 class="font-light text-xl text-zinc-900">Filas Disponíveis</h2>
+      <h2 class="font-light text-xl text-zinc-900">Popular</h2>
       <button 
         class="text-[#7297E0] hover:underline"
         @click="selectedCategory.value = 'all'"
@@ -95,8 +94,7 @@ onMounted(() => {
         Ver todas
       </button>
     </div>
-    
-    <!-- Exibição de carregamento ou erro -->
+
     <div v-if="loading" class="flex justify-center items-center py-8">
       <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#7297E0]"></div>
     </div>
@@ -104,8 +102,7 @@ onMounted(() => {
     <div v-else-if="error" class="text-red-500 text-center py-8">
       {{ error }}
     </div>
-    
-    <!-- Lista de filas -->
+
     <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <QueueCard 
         v-for="queue in filteredQueues" 
