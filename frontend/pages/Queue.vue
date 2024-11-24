@@ -1,10 +1,10 @@
 <template>
   <div class="min-h-screen bg-[#E1DADA] flex justify-center items-center">
     <div class="w-[400px] h-[400px] bg-[#98ACD5] rounded-lg flex flex-col justify-center items-center text-center">
-      <p class="text-zinc-50 font-bold mb-8">Quantidade atual de pessoas nessa fila: 32</p>
+      <p class="text-zinc-50 font-bold mb-12">Quantidade atual de pessoas nessa fila: 32</p>
 
       <div v-if="activeButton === 'join'" class="mb-8">
-        <p class="text-zinc-50 font-medium mb-2">Sua posição na fila: 2</p>
+        <p class="text-zinc-50 font-medium">Sua posição na fila: 2</p>
         <p class="text-zinc-50 font-medium">Pessoas na sua frente: 1</p>
       </div>
 
