@@ -30,7 +30,7 @@ const getTypeImage = (type) => {
 </script>
 
 <template>
-  <NuxtLink :to="`/queue/${queue.id}`" class="block transform hover:scale-105 transition-transform">
+  <NuxtLink :to="`/queue`" class="block transform hover:scale-105 transition-transform">
     <div 
       class="w-full md:w-[400px] h-[220px] rounded-lg overflow-hidden shadow-lg"
       :style="{ backgroundColor: getTypeColor(queue.type) }"
