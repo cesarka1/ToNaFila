@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const swaggerUi = require("swagger-ui-express");
 
 const queueRoutes = require("./routes/queueRoutes");
 const userRoutes = require("./routes/userRoutes");
+const swaggerDocument = require("./swagger-output.json");
 
 const app = express();
 
@@ -13,10 +15,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/queue", queueRoutes);
 app.use("/queues", userRoutes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/", (req, res) => {
   res.send("API funcionando! 🚀");
 });
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
